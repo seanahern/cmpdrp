@@ -1,0 +1,128 @@
+<!doctype html>
+
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8">
+
+		<title>CMPDRP</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+		<link rel="stylesheet" href="cmpdrp.css">
+
+		<script type="text/javascript">
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-510504-20']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="views">
+		</div>
+
+		<div class="nav">
+			<a href="#" class="btn btn-index" title="Index">Index</a>
+			<a href="#" class="btn btn-help" title="Help">Help</a>
+			<a href="#" class="btn btn-dir btn-prev" title="Previous">Previous</a>
+			<a href="#" class="btn btn-dir btn-next" title="Next">Next</a>
+		</div>
+
+		<div class="drop-zone">
+			<div class="copy">
+				<h2 class="msg">Drop images here</h2>
+				<h3 class="sub">BMP, GIF, JPG, PNG</h3>
+			</div>
+		</div>
+
+		<div class="blocker">
+		</div>
+
+		<div class="overlay index">
+			<div class="hd">
+				<h2 class="title">Files <span class="count"></span></h2>
+				<div class="toggle">
+					<ul>
+						<li><a href="#" class="btn-thumbs">Grid</a></li>
+						<li><a href="#" class="btn-list">List</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="bd">
+				<div class="list">
+					<ul class="filenames"></ul>
+				</div>
+				<div class="thumbs">
+				</div>
+			</div>
+		</div>
+
+		<div class="overlay help">
+			<div class="hd">
+				<h2 class="title">Help</h2>
+			</div>
+			<div class="bd">
+				<section>
+					<h3 class="subtitle">Usage</h3>
+					<p><strong>CMPDRP</strong> is a simple way to view website design comps in a desktop browser. Simply drag and drop your images into the browser window. Images are aligned to the top of the window and horizontally centered (horizontal scrolling is disabled) because that's how I need it right now.</p>
+					<p>Note: You are viewing files on <em>your own machine</em>. Files are <em>NOT</em> uploaded to any server. No one else can see what you are seeing (unless they are standing behind you).</p>
+					<p>Built by <a href="http://lucasishuman.com/">Lucas</a></p>
+				</section>
+				<section>
+					<h3 class="subtitle">Shortcuts</h3>
+					<table class="shortcuts">
+						<thead>
+							<tr>
+								<th>Key</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span class="key">?</span></td>
+								<td>Help (this menu)</td>
+							</tr>
+							<tr>
+								<td><span class="key">J</span></td>
+								<td>Previous image</td>
+							</tr>
+							<tr>
+								<td><span class="key">K</span></td>
+								<td>Next image</td>
+							</tr>
+							<tr>
+								<td><span class="key">I</span></td>
+								<td>List of images</td>
+							</tr>
+							<tr>
+								<td><span class="key">T</span></td>
+								<td>Toggle list / thumbnail view</td>
+							</tr>
+							<tr>
+								<td><span class="key">R</span></td>
+								<td>Reset</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+			</div>
+		</div>
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="cmpdrp.js"></script>
+
+	</body>
+
+</html>
