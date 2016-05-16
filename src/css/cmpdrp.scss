@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	line-height: 1;	
 }
 ol, ul {
 	list-style: none;
@@ -50,17 +50,19 @@ table {
 html,
 body {
 	height: 100%;
-	background-color: #FAFAFA;
-	color: #333;
+	background-color: #EFEFEF;
+	color: #000;
+    -webkit-font-smoothing: antialiased;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
+	font-size: 14px;
 }
 
 body {
-	font-family: sans-serif;
+	font-family: '-apple-system', sans-serif;
 }
 
 a {
@@ -78,8 +80,8 @@ strong {
 
 .toggle {
 	position: absolute;
-	right: 20px;
-	top: 10px;
+	right: 0px;
+	top: 5px;
 	font-size: 16px;
 	display: block;
 	z-index: 200;
@@ -117,43 +119,45 @@ strong {
 
 .nav .btn {
 	position: absolute;
-	display: block;
-	overflow: hidden;
-	width: 30px;
-	height: 30px;
-	background-repeat: no-repeat;
-	text-indent: -9999px;
+    display: block;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-color: #ccc;
+    border-radius:3px;
+    text-align:center;
+    color:#000;
+    font-weight:bold;
+    line-height: 30px;
 }
 
 .nav .btn-dir {
-	width: 50px;
-	height: 50px;
-	top: 48%;
-	margin-top: -25px;
+	width: 40px;
+	height: 40px;
+	top: 50%;
+	transform: translateY(-50%);
 	display: none;
+	line-height: 40px;
 }
 
 .nav .btn-help {
-	top: 20px;
-	right: 20px;
-	background-image: url(../img/btn_help.png);
+	top: 3%;
+	right: 2%;
 }
 
 .nav .btn-index {
-	top: 20px;
-	right: 60px;
-	background-image: url(../img/btn_index.png);
+	top: 3%;
+	right: 5.5%;
 	display: none;
 }
 
 .nav .btn-prev {
-	left: 10px;
-	background-image: url(../img/btn_prev.png);
+	left: 2%;
 }
 
 .nav .btn-next {
-	right: 10px;
-	background-image: url(../img/btn_next.png);
+	right: 2%;
 }
 
 .drop-zone {
@@ -173,7 +177,6 @@ strong {
 	left: 50%;
 	transform: translateY(-50%) translateX(-50%);
 	
-	border: 5px dashed #CCCCCC;
 	border-radius: 5px;
 	background-color: #FFFFFF;
 	text-align: center;
@@ -182,20 +185,28 @@ strong {
 
 .drop-zone .copy {
 	position: relative;
-	top: 45%;
+	top: 50%;
+	transform: translateY(-50%);
 	padding: 0 20px;
 	color: #ccc;
 }
 
+.drop-zone .copy img {
+    width: 65px;
+    margin-bottom: 15px;
+}
+
 .drop-zone .msg {
-	font-size: 30px;
+	font-size: 26px;
 	line-height: 30px;
 	font-weight: bold;
+	color: #828282;
 	margin-bottom: 10px;
 }
 
 .drop-zone .sub {
-	font-size: 18px;
+	font-size: 14px;
+    color: #B7B7B7;
 }
 
 .views {
@@ -237,17 +248,14 @@ strong {
 	box-sizing: border-box;
 
 	width: 80%;
-	height: 70%;
+	max-height: 70%;
 	top: 50%;
 	left: 50%;
 	transform: translateY(-50%) translateX(-50%);
 
-	border: 1px solid #ccc;
 	background-color: #fff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	overflow-x: hidden;
 	overflow-y: auto;
-	color: #666;
 	padding: 20px;
 
 }
@@ -263,28 +271,29 @@ strong {
 	left: 0;
 	width: 100%;
 	overflow: hidden;
-	height: 35px;
-	border-bottom: 2px solid #ccc;
+	padding: 0px 0px 40px;
+    border-bottom: 1px solid #F1F1F1;
 }
 
 .overlay .title {
 	position: absolute;
-	top: 10px;
-	left: 20px;
+	top: 5px;
+	left: 0px;
 	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 700;
 }
 
 .overlay .subtitle {
-	font-size: 16px;
-	margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.9em;
 }
 
 .overlay .bd {
-	padding: 10px 20px;
-}
-
-.overlay section {
-	margin-bottom: 30px;
+	padding: 10px 0px 0px;
+	display: block;
+	overflow: hidden;
 }
 
 .index .list {
@@ -384,11 +393,11 @@ strong {
 	height: 100%;
 	top: 0;
 	left: 0;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 .help .bd {
-	padding-top: 25px;
+	padding-top: 5px;
 }
 
 .help .bd section {
@@ -399,5 +408,5 @@ strong {
 
 .help .bd section p {
 	margin-bottom: 4%;
-	line-height: 120%;
+	line-height: 1.7em;;
 }
