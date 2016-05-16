@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+ /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -237,13 +237,13 @@ strong {
 
 	width: 80%;
 	height: 70%;
-	top: 15%;
-	left: 10%;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
 
 	border: 1px solid #ccc;
 	background-color: #fff;
-	box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	overflow-x: hidden;
 	overflow-y: auto;
 	color: #666;

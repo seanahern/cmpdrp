@@ -1,0 +1,29 @@
+{
+  "name": "cmpdrp",
+  "version": "1.0.0",
+  "description": "CMPDRP is a simple way to view website design comps in a desktop browser. Simply drag and drop your images into the browser window. Images are aligned to the top of the window and horizontally centered (horizontal scrolling is disabled) because that's how I need it right now.",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seanahern/cmpdrp.git"
+  },
+  "keywords": [
+    "cmpdrp"
+  ],
+  "author": "Lucas J. Shuman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seanahern/cmpdrp/issues"
+  },
+  "homepage": "http://cmpdrp.com",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.7",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7"
+  }
+}
