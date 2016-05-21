@@ -614,14 +614,14 @@
 			// only one image in the queue...
 			if (len < 2) return;
 
-			if (e.which === 74) { // j key
+			if (e.which === 74 || e.which === 37) { // j key
 				//e.preventDefault();
 				//e.stopPropagation();
 				showPreviousView();
 				return;
 			}
 
-			if (e.which === 75) { // k key
+			if (e.which === 75 || e.which === 39) { // k key
 				//e.preventDefault();
 				//e.stopPropagation();
 				showNextView();
