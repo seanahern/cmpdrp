@@ -19,6 +19,7 @@
 		$views = null,
 		$nav = null,
 		$dropZone = null,
+		$filepicker = null,
 		$index = null,
 		$help = null,
 		$blocker = null,
@@ -468,6 +469,7 @@
 		// get page elements ---
 
 		$dropZone = $('.drop-zone');
+		$filepicker = $('#filepicker');
 		$nav = $('.nav');
 		$views = $('.views');
 		$index = $('.index');
@@ -488,7 +490,6 @@
 			closeOverlay();
 		});
 
-
 		// test for apis -----
 
 		if (window.File && window.FileReader && window.FileList) {
@@ -499,7 +500,6 @@
 			$dropZone.find('.sub').html('Try <a href="http://www.google.com/chrome">Google Chrome</a> or <a href="http://www.mozilla.org/firefox">Firefox</a>');
 			return;
 		}
-
 
 		// add drop lsitener ----
 
@@ -549,7 +549,22 @@
 			showIndexThumbsView();
 		});
 
+		$dropZone.click(function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			$("#filepicker").trigger("click");
+		});
 
+		$filepicker.on('change', function(fileData) {
+			var reader = new FileReader();
+			reader.onload = (function (theFile) {
+				return function (e) {
+					console.log(e);
+				};
+			})(fileData);
+			reader.readAsDataURL(fileData);
+		});
+		
 		// set up key commands ---
 
 		$(document).on('keydown', function(e) {
