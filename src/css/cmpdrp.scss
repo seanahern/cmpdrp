@@ -1,4 +1,4 @@
- /* http://meyerweb.com/eric/tools/css/reset/ 
+ /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -12,8 +12,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -24,12 +24,12 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;	
+	line-height: 1;
 }
 ol, ul {
 	list-style: none;
@@ -60,6 +60,8 @@ body {
 	user-select: none;
 	font-size: 14px;
 }
+
+* { box-sizing: border-box; }
 
 body {
 	font-family: '-apple-system', sans-serif;
@@ -178,7 +180,7 @@ strong {
 	top: 50%;
 	left: 50%;
 	transform: translateY(-50%) translateX(-50%);
-	
+
 	border-radius: 5px;
 	background-color: #FFFFFF;
 	text-align: center;
@@ -237,6 +239,18 @@ strong {
 	display: block;
 	position: relative;
 	left: 50%;
+}
+
+.file-grid {
+  display: none;
+}
+.grid-item {
+  width: 31.33%;
+  float: left;
+  margin: 1rem;
+  overflow: hidden;
+  height: 320px;
+  border: 1px solid #000;
 }
 
 .overlay {
@@ -364,13 +378,13 @@ strong {
 	padding: 5px;
 }
 
-.shortcuts td:first-child { 
+.shortcuts td:first-child {
 	width: 30px;
 	text-align: right;
 }
 
 .shortcuts .key {
-	display: block; 
+	display: block;
 	background-color: #eee;
 	border: 1px solid #ccc;
 	border-radius: 3px;

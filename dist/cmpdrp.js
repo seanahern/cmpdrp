@@ -32,21 +32,16 @@
 		e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
 	};
 
+  /**
+  * Called from filepicker change event
+  */
 	var onDrop = function(e) {
 
 		e.stopPropagation();
 		e.preventDefault();
 
 		var file = e.target.result;
-
 		_files = _files.concat(file);
-    _files.sort(function(a, b) {
-			if (a.name < b.name) return -1;
-			if (a.name > b.name) return 1;
-			return 0;
-		});
-		_updateFileCountDisplay(_files.length);
-
 		console.log('all files', _files);
 
 	};
@@ -54,6 +49,26 @@
 	var _updateFileCountDisplay = function(count) {
 		$index.find('.hd .count').text('(' + count + ')');
 	};
+
+  function drawGrid() {
+    var $container = $(".file-grid"),
+        _items = []; //cache while building, before render
+    if(_files.length) {
+      _files.forEach(function(item) {
+        var $item = $("<div class='grid-item'></div>");
+        var $img = $("<img src='" + item + "' />");
+        $item.append($img);
+        _items.push($item);
+      });
+      _items.forEach(function(elem) {
+        $container.append(elem);
+      });
+      $(".drop-zone").fadeOut(500, function() {
+        $(".file-grid").fadeIn(500);
+      });
+    }
+  }
+
 
 	var loadNextFile = function() {
 
@@ -549,12 +564,15 @@
           })(file);
           reader.readAsDataURL(file);
         });
-        allproms.push(filePromise);
+        allFilePromises.push(filePromise);
       }
       Promise.all(allFilePromises).then(function() {
-        console.log("After all proms prom, write files");
+      console.log("After all proms prom, write files");
+        drawGrid();
       })
     });
+
+
 
 		// set up key commands ---
 
