@@ -66,7 +66,6 @@
       $(".drop-zone").fadeOut(500, function() {
         $(".file-grid").fadeIn(500);
       });
-      gridItemEvents();
     }
   }
 
