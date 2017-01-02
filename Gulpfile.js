@@ -9,7 +9,7 @@ gulp.task('sass', function() {
   gulp.src('src/css/cmpdrp.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', gutil.log))
-//  .pipe(cleanCSS().on('error'), gutil.log)
+    .pipe(cleanCSS().on('error'), gutil.log)
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'));
 });
