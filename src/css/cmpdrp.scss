@@ -1,4 +1,4 @@
- /* http://meyerweb.com/eric/tools/css/reset/ 
+ /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -12,8 +12,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -24,12 +24,12 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;	
+	line-height: 1;
 }
 ol, ul {
 	list-style: none;
@@ -60,6 +60,8 @@ body {
 	user-select: none;
 	font-size: 14px;
 }
+
+* { box-sizing: border-box; }
 
 body {
 	font-family: '-apple-system', sans-serif;
@@ -111,6 +113,7 @@ strong {
 	left: 0;
 	width: 100%;
 	height: 100%;
+	pointer-events: none;
 }
 
 .nav.fallback {
@@ -165,6 +168,7 @@ strong {
 	display: block;
 	position: absolute;
 	overflow: hidden;
+	cursor: pointer;
 	z-index: 600;
 
 	-webkit-box-sizing: border-box;
@@ -176,7 +180,7 @@ strong {
 	top: 50%;
 	left: 50%;
 	transform: translateY(-50%) translateX(-50%);
-	
+
 	border-radius: 5px;
 	background-color: #FFFFFF;
 	text-align: center;
@@ -235,6 +239,34 @@ strong {
 	display: block;
 	position: relative;
 	left: 50%;
+}
+
+.file-grid {
+  display: none;
+}
+
+.grid-item {
+  width: 28.33%;
+  float: left;
+  margin: 2.4rem;
+  overflow: hidden;
+  height: 320px;
+  box-shadow: 0px 10px 40px rgba(0,0,0,0.3);
+}
+
+.grid-item img {
+  max-width:100%;
+}
+
+.grid-item.full {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  overflow-y: scroll;
+  border: 0px;
 }
 
 .overlay {
@@ -362,13 +394,13 @@ strong {
 	padding: 5px;
 }
 
-.shortcuts td:first-child { 
+.shortcuts td:first-child {
 	width: 30px;
 	text-align: right;
 }
 
 .shortcuts .key {
-	display: block; 
+	display: block;
 	background-color: #eee;
 	border: 1px solid #ccc;
 	border-radius: 3px;

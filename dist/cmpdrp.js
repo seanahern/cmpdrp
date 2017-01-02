@@ -1,4 +1,3 @@
-
 ;(function($, window, document, undefined) {
 
 	"use strict";
@@ -19,69 +18,56 @@
 		$views = null,
 		$nav = null,
 		$dropZone = null,
+		$filepicker = null,
 		$index = null,
 		$help = null,
 		$blocker = null,
 		$fileList = null,
 		$fileThumbs = null;
 
-	
+
 	var onDragOver = function(e) {
 		e.stopPropagation();
 		e.preventDefault();
 		e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
 	};
 
+  /**
+  * Called from filepicker change event
+  */
 	var onDrop = function(e) {
 
 		e.stopPropagation();
 		e.preventDefault();
 
-		var fileList = e.dataTransfer.files, // FileList object.
-			i = fileList.length,
-			file = null,
-			newFiles = [];
-
-		// do a little dance to sort by file name -----
-
-		while (i--) {
-
-			file = fileList[i];
-			
-			// dont add non-image files - should be more robust validation...
-			if (file.type.toLowerCase().indexOf('image/') < 0) {
-				continue;
-			}
-
-			newFiles.push(file);
-
-		}
-
-		newFiles.sort(function(a, b) {
-			if (a.name < b.name) return -1;
-			if (a.name > b.name) return 1;
-			return 0;
-		});
-
-		//console.log('new files', newFiles);
-
-		if (newFiles.length === 0) {
-			return;
-		}
-
-		_files = _files.concat(newFiles);
-		_updateFileCountDisplay(_files.length);
-		
-		//console.log('all files', _files);
-
-		_setStartIndex = _currentLoad;
-		loadNextFile();
+		var file = e.target.result;
+		_files = _files.concat(file);
+		console.log('all files', _files);
 
 	};
 
 	var _updateFileCountDisplay = function(count) {
 		$index.find('.hd .count').text('(' + count + ')');
 	};
+
+  function drawGrid() {
+    var $container = $(".file-grid"),
+        _items = []; //cache while building, before render
+    if(_files.length) {
+      _files.forEach(function(item) {
+        var $item = $("<div class='grid-item'></div>");
+        var $img = $("<img src='" + item + "' />");
+        $item.append($img);
+        _items.push($item);
+      });
+      _items.forEach(function(elem) {
+        $container.append(elem);
+      });
+      $(".drop-zone").fadeOut(500, function() {
+        $(".file-grid").fadeIn(500);
+      });
+    }
+  }
 
 	var loadNextFile = function() {
 
@@ -250,7 +236,7 @@
 	};
 
 	var toggleIndex = function() {
-		
+
 		if ($index.hasClass('is-open')) {
 			closeOverlay();
 		} else {
@@ -260,7 +246,7 @@
 	};
 
 	var toggleHelp = function() {
-		
+
 		if ($help.hasClass('is-open')) {
 			closeOverlay();
 		} else {
@@ -397,7 +383,7 @@
 				break;
 
 			case IMG_STATE:
-				
+
 				hideDropZone();
 				closeOverlay();
 				showImgs();
@@ -468,6 +454,7 @@
 		// get page elements ---
 
 		$dropZone = $('.drop-zone');
+		$filepicker = $('#filepicker');
 		$nav = $('.nav');
 		$views = $('.views');
 		$index = $('.index');
@@ -488,7 +475,6 @@
 			closeOverlay();
 		});
 
-
 		// test for apis -----
 
 		if (window.File && window.FileReader && window.FileList) {
@@ -499,7 +485,6 @@
 			$dropZone.find('.sub').html('Try <a href="http://www.google.com/chrome">Google Chrome</a> or <a href="http://www.mozilla.org/firefox">Firefox</a>');
 			return;
 		}
-
 
 		// add drop lsitener ----
 
@@ -549,6 +534,50 @@
 			showIndexThumbsView();
 		});
 
+		$dropZone.click(function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			$("#filepicker").trigger("click");
+		});
+
+    /**
+    * When the picker changes, loop through each file and create a Promise calling onDrop()
+    * After each promise resolves, attempt to draw the UI
+    */
+		$filepicker.on('change', function() {
+      var allFilePromises = [],
+          counter = -1,
+          file;
+      while (file = this.files[++counter]) {
+        var filePromise = new Promise(function(resolve, reject) {
+          if (file.type.toLowerCase().indexOf('image/') < 0) {
+            reject();
+      			return true;
+      		}
+          var reader = new FileReader();
+          reader.onload = (function (file) {
+            return function (e) {
+              onDrop(e);
+              resolve();
+            };
+          })(file);
+          reader.readAsDataURL(file);
+        });
+        allFilePromises.push(filePromise);
+      }
+      Promise.all(allFilePromises).then(function() {
+      console.log("After all proms prom, write files");
+        drawGrid();
+      })
+    });
+
+    $(document).on('click', '.grid-item:not(.full) img', function() {
+      $(this).parent().addClass("full");
+    });
+
+    $(document).on('click', '.grid-item.full img', function() {
+      $(this).parent().removeClass("full");
+    });
 
 		// set up key commands ---
 
@@ -599,7 +628,7 @@
 			if (e.which === 84) { // t key
 
 				if ($index.hasClass('is-open')) {
-					
+
 					if ($fileThumbs.is(':visible')) {
 						showIndexListView();
 					} else {
@@ -634,4 +663,3 @@
 
 
 }(jQuery, window, document));
-

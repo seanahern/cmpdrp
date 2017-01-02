@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-
+		<input type="file" style="display: none;" id="filepicker" multiple/>
 		<div class="views">
 		</div>
 
@@ -39,6 +39,9 @@
 			<a href="#" class="btn btn-dir btn-prev" title="Previous">&larr;</a>
 			<a href="#" class="btn btn-dir btn-next" title="Next">&rarr;</a>
 		</div>
+
+    <div class="file-grid">
+    </div>
 
 		<div class="drop-zone">
 			<div class="copy">
@@ -117,9 +120,10 @@
 				</section>
 			</div>
 		</div>
-		
+
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-		<script src="dist/cmpdrp-min.js"></script>
+		<script src="dist/bluebird.min.js"></script>
+		<script src="dist/cmpdrp.js"></script>
 
 	</body>
 
