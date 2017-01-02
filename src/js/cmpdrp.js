@@ -1,4 +1,3 @@
-
 ;(function($, window, document, undefined) {
 
 	"use strict";
@@ -26,7 +25,7 @@
 		$fileList = null,
 		$fileThumbs = null;
 
-	
+
 	var onDragOver = function(e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -48,7 +47,7 @@
 		while (i--) {
 
 			file = fileList[i];
-			
+
 			// dont add non-image files - should be more robust validation...
 			if (file.type.toLowerCase().indexOf('image/') < 0) {
 				continue;
@@ -72,7 +71,7 @@
 
 		_files = _files.concat(newFiles);
 		_updateFileCountDisplay(_files.length);
-		
+
 		//console.log('all files', _files);
 
 		_setStartIndex = _currentLoad;
@@ -251,7 +250,7 @@
 	};
 
 	var toggleIndex = function() {
-		
+
 		if ($index.hasClass('is-open')) {
 			closeOverlay();
 		} else {
@@ -261,7 +260,7 @@
 	};
 
 	var toggleHelp = function() {
-		
+
 		if ($help.hasClass('is-open')) {
 			closeOverlay();
 		} else {
@@ -398,7 +397,7 @@
 				break;
 
 			case IMG_STATE:
-				
+
 				hideDropZone();
 				closeOverlay();
 				showImgs();
@@ -555,16 +554,23 @@
 			$("#filepicker").trigger("click");
 		});
 
-		$filepicker.on('change', function(fileData) {
-			var reader = new FileReader();
-			reader.onload = (function (theFile) {
-				return function (e) {
-					console.log(e);
-				};
-			})(fileData);
-			reader.readAsDataURL(fileData);
-		});
-		
+		$filepicker.on('change', function() {
+      var counter = -1, file;
+      while (file = this.files[++counter]) {
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+          return function (e) {
+            onDrop(e);
+          };
+        })(file);
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function handleFile() {
+      console.log("Handled!");
+    }
+
 		// set up key commands ---
 
 		$(document).on('keydown', function(e) {
@@ -614,7 +620,7 @@
 			if (e.which === 84) { // t key
 
 				if ($index.hasClass('is-open')) {
-					
+
 					if ($fileThumbs.is(':visible')) {
 						showIndexListView();
 					} else {
