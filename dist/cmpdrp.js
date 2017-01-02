@@ -66,9 +66,9 @@
       $(".drop-zone").fadeOut(500, function() {
         $(".file-grid").fadeIn(500);
       });
+      gridItemEvents();
     }
   }
-
 
 	var loadNextFile = function() {
 
@@ -572,7 +572,13 @@
       })
     });
 
+    $(document).on('click', '.grid-item:not(.full) img', function() {
+      $(this).parent().addClass("full");
+    });
 
+    $(document).on('click', '.grid-item.full img', function() {
+      $(this).parent().removeClass("full");
+    });
 
 		// set up key commands ---
 
