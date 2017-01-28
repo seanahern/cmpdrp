@@ -475,6 +475,10 @@
 			closeOverlay();
 		});
 
+		$dropZone.on('drop', function(e) {
+			fileHandler(e);
+		});
+
 		// test for apis -----
 
 		if (window.File && window.FileReader && window.FileList) {
@@ -544,11 +548,25 @@
     * When the picker changes, loop through each file and create a Promise calling onDrop()
     * After each promise resolves, attempt to draw the UI
     */
-		$filepicker.on('change', function() {
-      var allFilePromises = [],
+	$filepicker.on('change', fileHandler);
+
+    function fileHandler(e) {
+    	
+    	var allFilePromises = [],
           counter = -1,
-          file;
-      while (file = this.files[++counter]) {
+          file,
+          fileList;
+	    if(this && typeof this.files !== undefined) {
+			fileList = this.files;
+		} else {
+			fileList = e.originalEvent.dataTransfer.files;
+		}
+		if (typeof fileList == Array) {
+			fileList.filter(function(n) {
+				return n !== undefined;
+			});
+		}
+      while (file = fileList[++counter]) {
         var filePromise = new Promise(function(resolve, reject) {
           if (file.type.toLowerCase().indexOf('image/') < 0) {
             reject();
@@ -569,7 +587,7 @@
       console.log("After all proms prom, write files");
         drawGrid();
       })
-    });
+    }
 
     $(document).on('click', '.grid-item:not(.full) img', function() {
       $(this).parent().addClass("full");
